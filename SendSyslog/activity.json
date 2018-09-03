@@ -1,0 +1,73 @@
+{
+  "name": "SendSyslog",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "title": "Send Syslog messages",
+  "ref": "github.com/lpautet/flogo-activities/SendSyslog",
+  "description": "Send a syslog message",
+  "author": "Laurent Pautet lpautet@tibco.com",
+  "homepage": "https://github.com/lpautet/flogo-activities/SendSyslog",
+  "inputs":[
+    {
+      "name": "protocol",
+      "type": "string",
+      "value": "udp",
+      "required": true
+    },
+    {
+      "name": "host",
+      "type": "string",
+      "value": "",
+      "required" : true
+    },
+    {
+      "name": "port",
+      "type": "integer",
+      "value": 514,
+      "required" : false
+    },
+    {
+      "name": "facility",
+      "type": "integer",
+      "value": 16,
+      "required": true
+    },
+    {
+      "name": "severity",
+      "type": "integer",
+      "value": 6,
+      "required": true
+    },
+    {
+      "name": "hostname",
+      "type": "string",
+      "value": null,
+      "required": false
+    },
+    {
+      "name": "appName",
+      "type": "string",
+      "value": null,
+      "required": false
+    },
+    {
+      "name": "msgId",
+      "type": "string",
+      "value": null,
+      "required": false
+    },
+    {
+      "name": "flowInfo",
+      "type": "boolean",
+      "value": "false"
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "value": "",
+      "required" : true
+    }
+  ],
+  "outputs": [
+  ]
+}
