@@ -1,4 +1,4 @@
-# LMI log collectors for TIBCO Flogo
+# LMI log collector for TIBCO Flogo
 
 This contains two activities that can be used with TIBCO Flogo for sending messages to a TIBCO LMI physical or virtual 
 appliance.
