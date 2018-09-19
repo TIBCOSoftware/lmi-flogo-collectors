@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "type": "flogo:activity",
   "title": "Send Syslog messages",
-  "ref": "github.com/lpautet/flogo-activities/SendSyslog",
+  "ref": "github.com/TIBCOSoftware/lmi-flogo-collectors/SendSyslog",
   "description": "Send a syslog message",
   "author": "Laurent Pautet lpautet@tibco.com",
-  "homepage": "https://github.com/lpautet/flogo-activities/SendSyslog",
+  "homepage": "https://github.com/TIBCOSoftware/lmi-flogo-collectors/tree/master/SendSyslog",
   "inputs":[
     {
       "name": "protocol",

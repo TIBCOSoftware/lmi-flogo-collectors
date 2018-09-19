@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "type": "flogo:activity",
   "title": "Send ULDP messages to LogLogic LMI",
-  "ref": "github.com/lpautet/flogo-activities/SendUldp",
+  "ref": "github.com/TIBCOSoftware/lmi-flogo-collectors/SendUldp",
   "description": "Send a ULDP syslog message",
   "author": "Laurent Pautet lpautet@tibco.com",
-  "homepage": "https://github.com/lpautet/flogo-activities/SendUldp",
+  "homepage": "https://github.com/TIBCOSoftware/lmi-flogo-collectors/tree/master/SendUldp",
   "inputs":[
     {
       "name": "host",
