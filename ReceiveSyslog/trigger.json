@@ -1,8 +1,9 @@
 {
   "name": "ReceiveSyslog",
+  "title": "Receive Syslog",
   "version": "0.0.1",
   "type": "flogo:trigger",
-  "ref": "github.com/TIBCOSoftware/lmi-flogo-collectors",
+  "ref": "github.com/TIBCOSoftware/lmi-flogo-collectors/ReceiveSyslog",
   "description": "This enable the reception of TCP or UDP Syslog messages and triggers on each new message",
   "author": "Laurent Pautet <lpautet@tibco.com>",
   "settings":[
