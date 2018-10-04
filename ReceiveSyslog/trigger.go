@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"github.com/TIBCOSoftware/flogo-lib/core/trigger"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
+	"strconv"
 )
 
 // Create a new logger
@@ -64,7 +65,8 @@ func (t *SyslogTrigger) Initialize(ctx trigger.InitContext) error {
 	}
 
 	log.Debugf("Configured on port %s", t.config.Settings["port"])
-	t.server = &ServerTCP{ port: int(port.(string)), m: regexMap }
+	portInt, _ := strconv.Atoi(port.(string))
+	t.server = &ServerTCP{ port: portInt, m: regexMap }
 
 	return nil
 }
