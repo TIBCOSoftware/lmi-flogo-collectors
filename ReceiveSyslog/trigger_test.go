@@ -19,12 +19,12 @@ func getJsonMetadata() string {
 const testConfig string = `{
   "id": "mytrigger",
   "settings": {
-    "setting": "somevalue"
+    "port": "10514"
   },
   "handlers": [
     {
       "settings": {
-        "handler_setting": "somevalue"
+        "regex": ".*"
       },
       "action" {
 	     "id": "test_action"

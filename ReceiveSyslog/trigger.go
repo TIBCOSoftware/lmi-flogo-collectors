@@ -58,7 +58,7 @@ func (t *SyslogTrigger) Initialize(ctx trigger.InitContext) error {
 	}
 
 	log.Debugf("Configured on port %s", t.config.Settings["port"])
-	t.server = &ServerTCP{ port: port.(int), m: regexMap }
+	t.server = &ServerTCP{ port: int(port.(float64)), m: regexMap }
 
 	return nil
 }

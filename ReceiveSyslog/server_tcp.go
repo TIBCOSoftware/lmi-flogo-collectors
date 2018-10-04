@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/TIBCOSoftware/flogo-lib/core/trigger"
+	"io"
 	"net"
 	"strconv"
 	"strings"
@@ -23,7 +24,7 @@ type ServerTCP struct {
 func (s *ServerTCP) Start() error {
 
 	var err error
-	s.l, err = net.Listen("tcp4", strconv.Itoa(s.port))
+	s.l, err = net.Listen("tcp4", ":"+strconv.Itoa(s.port))
 	if err != nil {
 		fmt.Println(err)
 		return err
@@ -49,17 +50,26 @@ func (s *ServerTCP) Stop() error {
 }
 
 func (s *ServerTCP) handleConnection(c net.Conn) {
-	fmt.Printf("Serving %s\n", c.RemoteAddr().String())
+	count := 0
+	parsed := 0
+	log.Info("connection from ", c.RemoteAddr().String())
 	for {
 		line, err := bufio.NewReader(c).ReadString('\n')
 		if err != nil {
-			fmt.Println(err)
+			if err == io.EOF {
+				log.Info("connection closed for ", c.RemoteAddr().String(), " count=", count, ", parsed=", parsed)
+			} else {
+				log.Error("while reading:", err)
+			}
+			c.Close()
 			return
 		}
+		log.Debug("Read", line)
+		count++
 
 		triggerData := map[string]interface{}{
-			"body":      line,
-			"eventTime": time.Now(),
+			"output":    line,
+			"eventTime": time.Now().Unix(),
 			"sourceIP":  c.RemoteAddr().String(),
 			"source":    c.RemoteAddr().String(),
 			"message":   line,
@@ -78,7 +88,8 @@ func (s *ServerTCP) handleConnection(c net.Conn) {
 			if convErr != nil {
 				break;
 			}
-			triggerData["pri"] = pri
+			triggerData["priority"] = pri % 8
+			triggerData["facility"] = pri >> 3
 			if line[idx+1] == '1' && line[idx+1] == ' ' {
 				break; // TODO Syslog 5124
 			}
@@ -88,7 +99,7 @@ func (s *ServerTCP) handleConnection(c net.Conn) {
 			if errParser != nil {
 				break
 			}
-			triggerData["eventTime"] = eventTime
+			triggerData["eventTime"] = eventTime.Unix()
 			idx += len(DATE_FORMAT_SYSLOG_3164)
 			if line[idx] != ' ' {
 				break
@@ -101,9 +112,11 @@ func (s *ServerTCP) handleConnection(c net.Conn) {
 			triggerData["source"] = line[idx : idx+sp]
 			idx++
 			triggerData["message"] = line[idx:]
-			break;
+			break
 		}
 
+		parsed++;
+		log.Debug("parsing completed successfully");
 		for _, handler := range s.m {
 			handler.Handle(context.Background(), triggerData);
 		}

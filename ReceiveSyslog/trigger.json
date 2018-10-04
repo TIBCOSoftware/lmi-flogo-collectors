@@ -14,7 +14,7 @@
     },
     {
       "name": "port",
-      "type": "int",
+      "type": "integer",
       "value": "514"
     }
   ],
@@ -24,7 +24,11 @@
       "type": "string"
     },
     {
-      "name": "pri",
+      "name": "severity",
+      "type": "integer"
+    },
+    {
+      "name": "facility",
       "type": "integer"
     },
     {
@@ -37,7 +41,7 @@
     },
     {
       "name": "eventTime",
-      "type": "integer"
+      "type": "long"
     },
     {
       "name": "message",
