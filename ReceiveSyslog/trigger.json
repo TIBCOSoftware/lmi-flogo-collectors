@@ -1,0 +1,54 @@
+{
+  "name": "ReceiveSyslog",
+  "version": "0.0.1",
+  "type": "flogo:trigger",
+  "ref": "github.com/TIBCOSoftware/lmi-flogo-collectors",
+  "description": "This enable the reception of TCP or UDP Syslog messages and triggers on each new message",
+  "author": "Laurent Pautet <lpautet@tibco.com>",
+  "settings":[
+    {
+      "name": "protocol",
+      "type": "string",
+      "value": "default"
+    },
+    {
+      "name": "port",
+      "type": "int",
+      "value": "514"
+    }
+  ],
+  "output": [
+    {
+      "name": "output",
+      "type": "string"
+    },
+    {
+      "name": "pri",
+      "type": "integer"
+    },
+    {
+      "name": "sourceIP",
+      "type": "string"
+    },
+    {
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "name": "eventTime",
+      "type": "integer"
+    },
+    {
+      "name": "message",
+      "type": "string"
+    }
+  ],
+  "handler": {
+    "settings": [
+      {
+        "name": "regexp",
+        "type": "string"
+      }
+    ]
+  }
+}
