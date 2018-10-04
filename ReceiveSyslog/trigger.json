@@ -20,7 +20,7 @@
   ],
   "output": [
     {
-      "name": "output",
+      "name": "body",
       "type": "string"
     },
     {

@@ -68,7 +68,7 @@ func (s *ServerTCP) handleConnection(c net.Conn) {
 		count++
 
 		triggerData := map[string]interface{}{
-			"output":    line,
+			"body":    line,
 			"eventTime": time.Now().Unix(),
 			"sourceIP":  c.RemoteAddr().String(),
 			"source":    c.RemoteAddr().String(),
